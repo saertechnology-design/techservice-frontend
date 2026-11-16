@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+:root {
+  --color-primario:   #6366f1;
+  --color-secundario: #06b6d4;
+  --neon-purple: #a855f7;
+  --neon-cyan:   #06b6d4;
+  --neon-green:  #10b981;
+  --bg-dark:     #0a0f1e;
+  --bg-card:     #0f1629;
+  --bg-card2:    #111827;
+  --border-glow: rgba(99,102,241,0.3);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-dark);
+  color: #e2e8f0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar tech */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0a0f1e; }
+::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 3px; }
+
+/* Zoom fix iOS */
+@media (max-width: 768px) {
+  input, select, textarea { font-size: 16px !important; }
+}
+
+/* Animaciones */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(99,102,241,0.4); }
+  50%       { box-shadow: 0 0 20px rgba(99,102,241,0.8); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+@keyframes scan-line {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.glow-pulse { animation: pulse-glow 2s ease-in-out infinite; }
+.float-anim { animation: float 4s ease-in-out infinite; }
+.cursor-blink { animation: blink 1s step-end infinite; }
+
+/* Grid pattern de fondo */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(99,102,241,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,102,241,0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(15, 22, 41, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(99,102,241,0.2);
+}
+.glass-light {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Neon text */
+.neon-text {
+  color: #6366f1;
+  text-shadow: 0 0 10px rgba(99,102,241,0.6), 0 0 30px rgba(99,102,241,0.3);
+}
+.neon-cyan {
+  color: #06b6d4;
+  text-shadow: 0 0 10px rgba(6,182,212,0.6);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #6366f1, #06b6d4, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.shimmer-text {
+  background: linear-gradient(90deg, #6366f1 0%, #06b6d4 25%, #a855f7 50%, #06b6d4 75%, #6366f1 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Botón primario tech */
+.btn-tech {
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+}
+.btn-tech:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px rgba(99,102,241,0.6);
+}
+.btn-tech::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transition: left 0.4s ease;
+}
+.btn-tech:hover::before { left: 100%; }
+
+/* Badge de estado */
+.status-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
